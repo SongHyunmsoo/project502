@@ -2,6 +2,12 @@ server:
   port: 3000
 
 spring:
+  # 파일 업로드 용량 설정
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 60MB
+
   # 데이터베이스 설정
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
@@ -13,26 +19,17 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
         show_sql: true
         format_sql: true
         use_sql_comments: true
+        dialect: org.hibernate.dialect.OracleDialect
     hibernate:
       ddlAuto: create
-
 
   # 타임리프 설정
   thymeleaf:
     cache: true
     prefix: classpath:/templates/
-
-
-
-  # 파일 업로드 설정
-  servlet:
-    multipart:
-      maxFileSize: 20MB
-      maxRequestSize: 60MB
 
 
 # 로거 설정
@@ -43,8 +40,10 @@ logging:
         type:
           descriptor:
             sql: trace
-# 파일 경로 설정
-file:
-  path: /home/project/uploads/
-  url: /upload/
 
+
+# 파일 업로드 경로 설정
+file:
+  upload:
+    path: /home/project/uploads/
+    url: /uploads/
