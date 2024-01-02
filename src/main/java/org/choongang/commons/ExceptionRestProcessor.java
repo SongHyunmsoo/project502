@@ -1,15 +1,12 @@
-package org.choongang.restcontrollers;
+package org.choongang.commons;
 
 import org.choongang.commons.exceptions.CommonException;
 import org.choongang.commons.rests.JSONData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice("org.choongang.restcontrollers")
-public class RestCommonController {
-
+public class ExceptionRestProcessor {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<JSONData<Object>> errorHandler(Exception e) {
 
