@@ -1,28 +1,21 @@
-package org.choongang.controllers;
-
+package org.choongang.commons;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.choongang.commons.exceptions.CommonException;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice("org.choongang.controllers")
-public class CommonController {
-
+public interface ExceptionProcessor {
     @ExceptionHandler(Exception.class)
-    public String errorHandler(Exception e, HttpServletResponse response,
-                               HttpServletRequest request,
-                               Model model) {
+    default String errorHandler(Exception e, HttpServletResponse response, HttpServletRequest request, Model model) {
 
-        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; // 500 에러
-
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; // 500
 
         if (e instanceof CommonException) {
             CommonException commonException = (CommonException) e;
-            status= commonException.getStatus();
+            status = commonException.getStatus();
         }
 
         response.setStatus(status.value());
@@ -30,11 +23,10 @@ public class CommonController {
         e.printStackTrace();
 
         model.addAttribute("status", status.value());
-        model.addAttribute("path",request.getRequestURI());
-        model.addAttribute("method",request.getMethod());
+        model.addAttribute("path", request.getRequestURI());
+        model.addAttribute("method", request.getMethod());
         model.addAttribute("message", e.getMessage());
 
         return "error/common";
-
     }
 }
