@@ -33,26 +33,24 @@ public class JoinValidator implements Validator, PasswordValidator {
         String password = form.getPassword();
         String confirmPassword = form.getConfirmPassword();
 
-        // 1 , 이메일, 아이디 중복 여부 체크
-        // 디비 접근 , 의존성 주입,
-        if (StringUtils.hasText(email) && memberRepository.existsByEmail(email)){
-            errors.rejectValue("email","Duplicated");
+        // 1. 이메일, 아이디 중복 여부 체크
+        if (StringUtils.hasText(email) && memberRepository.existsByEmail(email)) {
+            errors.rejectValue("email", "Duplicated");
         }
 
-        if (StringUtils.hasText(userId)&& memberRepository.existsByUserId(userId)) {
-            errors.rejectValue("userId","Duplicated");
+        if (StringUtils.hasText(userId) && memberRepository.existsByUserId(userId)) {
+            errors.rejectValue("userId", "Duplicated");
         }
-        // 2. 비밀번호 복잡성 체크 - 대소문자1개 이상 포함,숫자1개이상 포함, 특수문자 1개 이상 포함
 
+        // 2. 비밀번호 복잡성 체크 - 대소문자 1개 각각 포함, 숫자 1개 이상 포함, 특수문자도 1개 이상 포함
         if (StringUtils.hasText(password) &&
-                (!alphaCheck(password,true)|| !numberCheck(password)
-                || !specialCharsCheck(password))){
-            errors.rejectValue("password","d");
+                (!alphaCheck(password, true) || !numberCheck(password) || !specialCharsCheck(password))) {
+            errors.rejectValue("password", "Complexity");
         }
 
         // 3. 비밀번호, 비밀번호 확인 일치 여부 체크
         if (StringUtils.hasText(password) && StringUtils.hasText(confirmPassword)
-                && !password.equals(confirmPassword)) {
+            && !password.equals(confirmPassword)) {
             errors.rejectValue("confirmPassword", "Mismatch.password");
         }
     }

@@ -12,11 +12,11 @@ public class RequestJoin {
     private String email;
 
     @NotBlank
-    @Size(min = 6)
+    @Size(min=6)
     private String userId;
 
     @NotBlank
-    @Size(min = 8)
+    @Size(min=8)
     private String password;
 
     @NotBlank
@@ -27,4 +27,5 @@ public class RequestJoin {
 
     @AssertTrue
     private boolean agree;
+
 }

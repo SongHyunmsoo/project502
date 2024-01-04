@@ -37,7 +37,7 @@ public class Utils {
 
         String pattern = ".*(iPhone|iPod|iPad|BlackBerry|Android|Windows CE|LG|MOT|SAMSUNG|SonyEricsson).*";
 
-        return ua.matches(pattern);
+       return ua.matches(pattern);
     }
 
     public String tpl(String path) {
@@ -47,22 +47,21 @@ public class Utils {
     }
 
     public static String getMessage(String code, String type) {
-    type = StringUtils.hasText(type) ? type : "validations";
+        type = StringUtils.hasText(type) ? type : "validations";
 
-    ResourceBundle bundle = null;
-    if (type.equals("commons")){
-        bundle = commonsBundle;
-    } else if (type.equals("errors")){
-        bundle = errorsBundle;
-    } else {
-        bundle = validationsBundle;
-    }
+        ResourceBundle bundle = null;
+        if (type.equals("commons")) {
+            bundle = commonsBundle;
+        } else if (type.equals("errors")) {
+            bundle = errorsBundle;
+        } else {
+            bundle = validationsBundle;
+        }
 
-    return bundle.getString(code);
-
+        return bundle.getString(code);
     }
 
     public static String getMessage(String code) {
-        return getMessage(code,null);
+        return getMessage(code, null);
     }
 }
