@@ -24,7 +24,7 @@ public class ConfigSaveTest {
 
     @Autowired
     private ConfigInfoService infoService;
-
+    
     @Test
     @DisplayName("BasicConfig로 생성된 객체가 JSON으로 저장되는지 테스트")
     void saveTest() {

@@ -2,25 +2,25 @@ package org.choongang.commons;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.RequiredArgsConstructor;
+import org.choongang.admin.config.controllers.BasicConfig;
 import org.choongang.admin.config.service.ConfigInfoService;
-
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Controller("org.choongang")
+@ControllerAdvice("org.choongang")
 @RequiredArgsConstructor
 public class BasicConfigAdvice {
     private final ConfigInfoService infoService;
 
-    @ModelAttribute("basicConfig")
-    public Map<String,String> getBasicConfig() {
-        Optional <Map<String,String>> opt = infoService.get("basic",new TypeReference<>(){});
+    @ModelAttribute("siteConfig")
+    public BasicConfig getBasicConfig() {
 
-        Map<String,String> config = opt.orElseGet(()-> new HashMap<String, String>());
+        BasicConfig config = infoService.get("basic",BasicConfig.class).orElseGet(BasicConfig::new);
+
         return config;
     }
 }

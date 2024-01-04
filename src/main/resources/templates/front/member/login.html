@@ -4,7 +4,7 @@
     layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
     <h1 th:text="#{로그인}"></h1>
-    <form name="frmLogin" method="post" th:action="@{/templates/admin/member/login}" autocomplete="off">
+    <form name="frmLogin" method="post" th:action="@{/member/login}" autocomplete="off">
         <input type="hidden" name="redirectURL"
                th:if="${param.redirectURL != null}" th:value="${param.redirectURL}">
         <dl>

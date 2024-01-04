@@ -1,6 +1,5 @@
 package org.choongang.admin.config.service;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -10,11 +9,11 @@ import org.choongang.admin.config.repositories.ConfigsRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor// 의존성 주입
+@RequiredArgsConstructor
 public class ConfigSaveService {
     private final ConfigsRepository repository;
 
-    public <T> void save(String code, T data) {
+    public void save(String code, Object data) {
         Configs configs = repository.findById(code).orElseGet(Configs::new);
 
         ObjectMapper om = new ObjectMapper();
@@ -26,7 +25,8 @@ public class ConfigSaveService {
             configs.setCode(code);
 
             repository.saveAndFlush(configs);
-        } catch (JsonProcessingException e){
+
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
