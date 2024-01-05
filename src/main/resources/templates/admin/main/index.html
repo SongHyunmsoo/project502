@@ -3,6 +3,5 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
-    관리자 페이지...
-</section>
+    <th:block th:text="${@utils.printThumb(2,150,150,'image')}"></th:block></section>
 </html>
