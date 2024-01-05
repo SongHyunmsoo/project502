@@ -5,23 +5,20 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
-import org.choongang.configs.AuditorAwareImpl;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Getter@Setter
+@Getter @Setter
 @MappedSuperclass
-@EntityListeners(AuditorAwareImpl.class)
-public abstract class BaseMember extends Base{
-
+@EntityListeners(AuditingEntityListener.class)
+public abstract class BaseMember extends Base {
 
     @CreatedBy
-    @Column(length = 40, updatable = false)
+    @Column(length=40, updatable = false)
     private String createdBy;
 
     @LastModifiedBy
-    @Column(length = 40, insertable = false)
+    @Column(length=40, insertable = false)
     private String modifiedBy;
-
-
 }

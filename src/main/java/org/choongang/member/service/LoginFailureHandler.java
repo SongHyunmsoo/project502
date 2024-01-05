@@ -17,18 +17,17 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         HttpSession session = request.getSession();
 
-        // 세션 로그인 실패 메세지 삭제
+        // 세션 로그인 실패 메세지 일괄 삭제
         MemberUtil.clearLoginData(session);
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        session.setAttribute("username",username);
+        session.setAttribute("username", username);
 
         if (!StringUtils.hasText(username)) {
             session.setAttribute("NotBlank_username", Utils.getMessage("NotBlank.userId"));
         }
-
 
         if (!StringUtils.hasText(password)) {
             session.setAttribute("NotBlank_password", Utils.getMessage("NotBlank.password"));
@@ -36,8 +35,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 
         // 아이디, 비번이 있지만 실패한 경우 : 아이디로 조회되는 회원이 없거나, 비번이 일치 X
         if (StringUtils.hasText(username) && StringUtils.hasText(password)) {
-            session.setAttribute("Global_error",Utils.getMessage("Fail.login","errors"));
-
+            session.setAttribute("Global_error", Utils.getMessage("Fail.login", "errors"));
         }
 
 

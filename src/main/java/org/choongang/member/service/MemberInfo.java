@@ -27,17 +27,17 @@ public class MemberInfo implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password; // 비밀번호
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return StringUtils.hasText(email) ? email : userId; // 아이디
+        return StringUtils.hasText(email) ? email : userId;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false; //
+        return true;
     }
 
     @Override

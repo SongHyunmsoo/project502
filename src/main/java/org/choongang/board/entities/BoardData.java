@@ -1,4 +1,4 @@
-package org.choongang.board.entites;
+package org.choongang.board.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

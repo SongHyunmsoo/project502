@@ -12,6 +12,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
 
     @EntityGraph(attributePaths = "authorities")
     Optional<Member> findByEmail(String email);
+
     @EntityGraph(attributePaths = "authorities")
     Optional<Member> findByUserId(String userId);
 
@@ -25,6 +26,5 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
         QMember member = QMember.member;
 
         return exists(member.userId.eq(userId));
-
     }
 }
