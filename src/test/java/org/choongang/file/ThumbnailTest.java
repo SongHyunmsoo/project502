@@ -9,14 +9,12 @@ import java.util.Arrays;
 
 @SpringBootTest
 public class ThumbnailTest {
-
     @Autowired
     private FileInfoService infoService;
 
     @Test
     void getThumbTest() {
-        String[] data = infoService.getThumb(1L,150,150);
+        String[] data = infoService.getThumb(502L, 250, 250);
         System.out.println(Arrays.toString(data));
     }
-
 }

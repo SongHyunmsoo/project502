@@ -6,7 +6,6 @@ import org.choongang.commons.rests.JSONData;
 import org.choongang.file.entities.FileInfo;
 import org.choongang.file.service.FileDeleteService;
 import org.choongang.file.service.FileUploadService;
-import org.choongang.member.MemberUtil;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,16 +23,17 @@ public class ApiFileController implements ExceptionRestProcessor {
     public JSONData<List<FileInfo>> upload(@RequestParam("file") MultipartFile[] files,
                                            @RequestParam(name="gid", required = false) String gid,
                                            @RequestParam(name="location", required = false) String location,
-                                           @RequestParam(name ="imageOnly",required = false)boolean imageOnly) {
+                                           @RequestParam(name="imageOnly", required=false) boolean imageOnly,
+                                           @RequestParam(name="singleFile", required = false) boolean singleFile) {
 
-        List<FileInfo> uploadedFiles = uploadService.upload(files, gid, location,imageOnly);
+        List<FileInfo> uploadedFiles = uploadService.upload(files, gid, location, imageOnly, singleFile);
 
         return new JSONData<>(uploadedFiles);
     }
 
     @GetMapping("/{seq}")
-    public void delete(Long seq) {
+    public void delete(@PathVariable("seq") Long seq) {
 
+        deleteService.delete(seq);
     }
-
 }

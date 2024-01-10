@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 @Component
@@ -76,6 +77,8 @@ public class Utils {
      * @return
      */
     public String nl2br(String str) {
+        str = Objects.requireNonNullElse(str, "");
+
         str = str.replaceAll("\\n", "<br>")
                 .replaceAll("\\r", "");
 
@@ -92,8 +95,9 @@ public class Utils {
         String thumbSize = config.getThumbSize(); // \r\n
         String[] thumbsSize = thumbSize.split("\\n");
 
-        List<int[]> data = Arrays.stream(thumbsSize).filter(StringUtils::hasText)
-                .map(s-> s.replaceAll("\\s+",""))
+        List<int[]> data = Arrays.stream(thumbsSize)
+                .filter(StringUtils::hasText)
+                .map(s -> s.replaceAll("\\s+", ""))
                 .map(this::toConvert).toList();
 
 
@@ -102,19 +106,17 @@ public class Utils {
 
     private int[] toConvert(String size) {
         size = size.trim();
-
         int[] data = Arrays.stream(size.replaceAll("\\r", "").toUpperCase().split("X"))
                 .mapToInt(Integer::parseInt).toArray();
-
 
         return data;
     }
 
-    public String printThumb(long seq, int width, int height, String className){
+    public String printThumb(long seq, int width, int height, String className) {
         String[] data = fileInfoService.getThumb(seq, width, height);
         if (data != null) {
-            String cls = StringUtils.hasText(className) ? "class='" + className + "'" : "" ;
-            String image = String.format("<img src ='%s'%s>", data[1], cls);
+            String cls = StringUtils.hasText(className) ? " class='" + className + "'" : "";
+            String image = String.format("<img src='%s'%s>", data[1], cls);
             return image;
         }
 
