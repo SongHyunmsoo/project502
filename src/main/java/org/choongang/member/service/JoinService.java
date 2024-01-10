@@ -25,7 +25,6 @@ public class JoinService {
     private final PasswordEncoder encoder;
     private final FileUploadService uploadService;
 
-
     public void process(RequestJoin form, Errors errors) {
         validator.validate(form, errors);
         if (errors.hasErrors()) {
@@ -53,6 +52,7 @@ public class JoinService {
 
         // 파일 업로드 완료 처리
         uploadService.processDone(form.getGid());
+
     }
 
     public void process(Member member) {
