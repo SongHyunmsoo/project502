@@ -30,6 +30,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberInfoService implements UserDetailsService {
 
+
     private final MemberRepository memberRepository;
     private final FileInfoService fileInfoService;
     private final HttpServletRequest request;
@@ -100,4 +101,7 @@ public class MemberInfoService implements UserDetailsService {
 
         return new ListData<>(items, pagination);
     }
+    /* 자동 로그인 S */
+
+    /* 자동 로그인 E*/
 }
