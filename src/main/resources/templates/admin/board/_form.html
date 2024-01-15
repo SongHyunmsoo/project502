@@ -25,7 +25,7 @@
                 <div class="error" th:each="err : ${#fields.errors('bid')}" th:text="${err}"></div>
             </td>
             <td th:if="*{mode == 'edit'}"> <!-- 수정 -->
-                <input type="text" name="bid" th:field="*{bid}">
+                <input type="hidden" name="bid" th:field="*{bid}">
                 <th:block th:text="*{bid}"></th:block>
             </td>
         </tr>
@@ -33,6 +33,7 @@
             <th>게시판 이름</th>
             <td>
                 <input type="text" name="bName" th:field="*{bName}">
+
                 <div class="error" th:each="err : ${#fields.errors('bName')}" th:text="${err}"></div>
             </td>
         </tr>
@@ -125,16 +126,16 @@
                 <input type="radio" name="skin" value="default" id="skin_default" th:field="*{skin}">
                 <label for="skin_default">기본(default)</label>
 
-                <input type="radio" name="skin" value="gallery" id="skin_gallery"th:field="*{skin}">
+                <input type="radio" name="skin" value="gallery" id="skin_gallery" th:field="*{skin}">
                 <label for="skin_gallery">갤러리(gallery)</label>
 
-                <input type="radio" name="skin" value="qna" id="skin_qna"th:field="*{skin}">
+                <input type="radio" name="skin" value="qna" id="skin_qna" th:field="*{skin}">
                 <label for="skin_qna">질문과 답변(QnA)</label>
 
-                <input type="radio" name="skin" value="review" id="skin_review"th:field="*{skin}">
+                <input type="radio" name="skin" value="review" id="skin_review" th:field="*{skin}">
                 <label for="skin_review">후기(review)</label>
 
-                <input type="radio" name="skin" value="blog" id="skin_blog"th:field="*{skin}">
+                <input type="radio" name="skin" value="blog" id="skin_blog" th:field="*{skin}">
                 <label for="skin_blog">블로그(blog)</label>
             </td>
         </tr>
@@ -226,11 +227,12 @@
             <td>
                 <textarea id="html_top" name="htmlTop" th:field="*{htmlTop}"></textarea>
 
-                <button type="button" class="upload_files"
+                <button type="button" class="upload_files sbtn"
                     data-location="html_top" data-image-only="true"
                 >
                     <i class="xi-image"></i>
-                            이미지 추가</button>
+                    이미지 추가
+                </button>
                 <div class="uploaded_files" id="uploaded_files_html_top"></div>
             </td>
         </tr>
@@ -243,11 +245,12 @@
             <td>
                 <textarea id="html_bottom" name="htmlBottom" th:field="*{htmlBottom}"></textarea>
 
-                <button type="button" class="upload_files"
+                <button type="button" class="upload_files sbtn"
                         data-location="html_bottom" data-image-only="true"
                 >
                     <i class="xi-image"></i>
-                            이미지 추가</button>
+                    이미지 추가
+                </button>
                 <div class="uploaded_files" id="uploaded_files_html_bottom"></div>
             </td>
         </tr>

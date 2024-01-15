@@ -48,7 +48,7 @@ public class BoardController implements ExceptionProcessor {
      * @return
      */
     @GetMapping("/add")
-    public String add(@ModelAttribute RequestBoardConfig config,Model model) {
+    public String add(@ModelAttribute RequestBoardConfig config, Model model) {
         commonProcess("add", model);
 
         return "admin/board/add";
@@ -63,11 +63,12 @@ public class BoardController implements ExceptionProcessor {
     public String save(@Valid RequestBoardConfig config, Errors errors, Model model) {
         String mode = config.getMode();
 
-        commonProcess(mode,model);
+        commonProcess(mode, model);
 
         if (errors.hasErrors()) {
             return "admin/board/" + mode;
         }
+
 
         return "redirect:/admin/board";
     }

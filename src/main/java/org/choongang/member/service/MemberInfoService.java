@@ -30,7 +30,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberInfoService implements UserDetailsService {
 
-
     private final MemberRepository memberRepository;
     private final FileInfoService fileInfoService;
     private final HttpServletRequest request;
@@ -96,12 +95,10 @@ public class MemberInfoService implements UserDetailsService {
 
         /* 페이징 처리 S */
         int total = (int)memberRepository.count(andBuilder); // 총 레코드 갯수
+
         Pagination pagination = new Pagination(page, total, 10, limit, request);
         /* 페이징 처리 E */
 
         return new ListData<>(items, pagination);
     }
-    /* 자동 로그인 S */
-
-    /* 자동 로그인 E*/
 }

@@ -5,12 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.choongang.member.service.LoginFailureHandler;
 import org.choongang.member.service.LoginSuccessHandler;
 import org.choongang.member.service.MemberInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,10 +19,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+
     private final MemberInfoService memberInfoService;
-
-
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -69,8 +65,6 @@ public class SecurityConfig {
 
         /* 인가 설정 E - 접근 통제 */
 
-        http.headers(c -> c.frameOptions(f -> f.sameOrigin()));
-
         /* 자동 로그인 설정 S */
         http.rememberMe(c -> {
             c.rememberMeParameter("autoLogin") // 자동 로그인으로 사용할 요청 파리미터 명, 기본값은 remember-me
@@ -81,18 +75,13 @@ public class SecurityConfig {
         });
         /* 자동 로그인 설정 E */
 
-
+        http.headers(c -> c.frameOptions(f -> f.sameOrigin()));
 
         return http.build();
-
-
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
-
 }
