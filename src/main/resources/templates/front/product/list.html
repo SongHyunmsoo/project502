@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1>카테고리별 상품리스트</h1>
+    <a th:href="@{/product/index}" th:text="#{물품전체보기}"></a>
+    <a th:href="@{/product/list}" th:text="#{카테고리별 상품리스트}"></a>
+    <a th:href="@{/product/info}" th:text="#{물품상세}"></a>
+
+    <div style="width: 100%;">
+        <div style="float-top">BEST상품목록</div>
+        <div style="width: 25%; height: 400px; float: left; background: #0001;">
+            <a th:href="@{/product/list}" th:text="#{top1번상품}"></a>
+        </div>
+        <div style="width: 25%; height: 400px;float: left; background: #0002;">
+            <a th:href="@{/product/list}" th:text="#{top2번상품}"></a>
+        </div>
+        <div style="width: 25%; height: 400px; float: left; background: #0003;">
+            <a th:href="@{/product/list}" th:text="#{top3번상품}"></a>
+        </div>
+        <div style="width: 25%; height: 400px; float: left; background: #0004;">
+            <a th:href="@{/product/list}" th:text="#{top4번상품}"></a>
+        </div>
+    </div>
+    <div>
+    ...상품들
+
+        <button type="button" id="more"> +더보기버튼</button>
+        js-> #more 으로 function 작성
+    </div>
+
+
+</main>
+</html>

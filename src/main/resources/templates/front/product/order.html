@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1>제품 주문 클릭 시 나올 화면</h1>
+    <a th:href="@{/product/index}" th:text="#{물품전체보기}"></a>
+    <a th:href="@{/product/list}" th:text="#{카테고리별 상품리스트}"></a>
+    <a th:href="@{/product/info}" th:text="#{물품상세}"></a>
+
+    이름, 전화번호, 주소, 결제방법 등
+
+</main>
+</html>

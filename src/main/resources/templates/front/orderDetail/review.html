@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>리뷰 페이지</title>
+</head>
+<body>
+
+<button onclick="openReviewPopup()">리뷰 작성</button>
+
+<script>
+    function openReviewPopup() {
+        var reviewPopup = window.open("", "_blank", "width=600,height=400");
+        reviewPopup.document.write("<html><head><title>리뷰 작성</title></head><body>");
+        reviewPopup.document.write("<form id='reviewForm'>");
+        reviewPopup.document.write("리뷰 내용: <textarea id='reviewContent'></textarea><br>");
+        reviewPopup.document.write("<input type='button' value='등록' onclick='submitReview()'>");
+        reviewPopup.document.write("</form>");
+        reviewPopup.document.write("</body></html>");
+    }
+
+    function submitReview() {
+        var reviewPage = window.opener.document.getElementById("reviewPage").value;
+        window.opener.document.getElementById("reviewsContainer").innerHTML += "<p>" + reviewPage + "</p>";
+        window.close();
+    }
+</script>
+</body>
+</html>

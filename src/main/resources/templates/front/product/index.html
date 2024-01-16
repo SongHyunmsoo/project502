@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1>물품전체</h1>
+    <a th:href="@{/product/index}" th:text="#{물품전체보기}"></a>
+    <a th:href="@{/product/list}" th:text="#{카테고리별 상품리스트}"></a>
+    <a th:href="@{/product/info}" th:text="#{물품상세}"></a>
+
+</main>
+</html>

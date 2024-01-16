@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+  <h1>1:1 문의</h1>
+  <p>1:1 문의 설명글 어쩌고 저쩌고</p>
+  <div>
+    <h3>자주묻는 질문</h3>
+    <ul>
+      <li>자주묻는 질문1</li>
+      <li>자주묻는 질문2</li>
+      <li>자주묻는 질문3</li>
+    </ul>
+    <a th:href="@{/cs/inquiryAdd}" th:text="#{1:1문의 작성}"></a>
+  </div>
+</main>
+</html>

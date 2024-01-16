@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <div class="visual_box">사진 이미지 / 공지사항</div>
+    <a th:href="@{/cs/inquiry}" th:text="#{문의하기}"></a>
+    <a th:href="@{/cs/improvement}" th:text="#{칭찬/개선}"></a>
+</main>
+</html>
